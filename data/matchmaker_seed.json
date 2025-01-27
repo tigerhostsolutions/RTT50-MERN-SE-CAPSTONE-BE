@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Emma Johnson",
+    "age": 28,
+    "sex": "Female",
+    "location": "San Francisco, CA",
+    "about_me": "Software engineer with a love for hiking, photography, and cooking delicious meals."
+  },
+  {
+    "name": "Sophia Miller",
+    "age": 25,
+    "sex": "Female",
+    "location": "Seattle, WA",
+    "about_me": "Nature lover who spends weekends hiking and volunteering at local animal shelters."
+  },
+  {
+    "name": "Ava Davis",
+    "age": 27,
+    "sex": "Female",
+    "location": "Chicago, IL",
+    "about_me": "Fitness enthusiast who loves yoga, running, and cooking healthy meals."
+  },
+  {
+    "name": "Isabella Martinez",
+    "age": 26,
+    "sex": "Female",
+    "location": "Los Angeles, CA",
+    "about_me": "An artist at heart who loves painting, attending art galleries, and drinking great coffee."
+  },
+  {
+    "name": "Mia Thomas",
+    "age": 24,
+    "sex": "Female",
+    "location": "Portland, OR",
+    "about_me": "A budding writer who loves reading, gardening, and indulging in good conversations."
+  },
+  {
+    "name": "Olivia Harris",
+    "age": 29,
+    "sex": "Female",
+    "location": "Boston, MA",
+    "about_me": "History enthusiast who loves museums, writing novels, and taking long walks in the park."
+  },
+  {
+    "name": "Charlotte Robinson",
+    "age": 30,
+    "sex": "Female",
+    "location": "Phoenix, AZ",
+    "about_me": "A coffee lover who enjoys baking, salsa dancing, and reading mystery novels."
+  },
+  {
+    "name": "Amelia Clark",
+    "age": 27,
+    "sex": "Female",
+    "location": "Denver, CO",
+    "about_me": "Adventure seeker who loves skiing, hiking, and capturing moments with her camera."
+  },
+  {
+    "name": "Abigail Lewis",
+    "age": 26,
+    "sex": "Female",
+    "location": "Atlanta, GA",
+    "about_me": "Loves music festivals, trying new vegan recipes, and gardening on sunny days."
+  },
+  {
+    "name": "Harper Walker",
+    "age": 28,
+    "sex": "Female",
+    "location": "Dallas, TX",
+    "about_me": "Dog mom who enjoys morning jogs, crafting DIY projects, and exploring new coffee shops."
+  }
+]
