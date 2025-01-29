@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Emma Johnson",
+    "age": 28,
+    "gender": "Female",
+    "about": "Software engineer with a love for hiking, photography, and cooking delicious meals."
+  },
+  {
+    "name": "Sophia Miller",
+    "age": 25,
+    "gender": "Female",
+    "about": "Nature lover who spends weekends hiking and volunteering at local animal shelters."
+  },
+  {
+    "name": "Ava Davis",
+    "age": 27,
+    "gender": "Female",
+    "about": "Fitness enthusiast who loves yoga, running, and cooking healthy meals."
+  },
+  {
+    "name": "Isabella Martinez",
+    "age": 26,
+    "gender": "Female",
+    "about": "An artist at heart who loves painting, attending art galleries, and drinking great coffee."
+  },
+  {
+    "name": "Mia Thomas",
+    "age": 24,
+    "gender": "Female",
+    "about": "A budding writer who loves reading, gardening, and indulging in good conversations."
+  },
+  {
+    "name": "Olivia Harris",
+    "age": 29,
+    "gender": "Female",
+    "about": "History enthusiast who loves museums, writing novels, and taking long walks in the park."
+  },
+  {
+    "name": "Charlotte Robinson",
+    "age": 30,
+    "gender": "Female",
+    "about": "A coffee lover who enjoys baking, salsa dancing, and reading mystery novels."
+  },
+  {
+    "name": "Amelia Clark",
+    "age": 27,
+    "gender": "Female",
+    "about": "Adventure seeker who loves skiing, hiking, and capturing moments with her camera."
+  },
+  {
+    "name": "Abigail Lewis",
+    "age": 26,
+    "gender": "Female",
+    "about": "Loves music festivals, trying new vegan recipes, and gardening on sunny days."
+  },
+  {
+    "name": "Harper Walker",
+    "age": 28,
+    "gender": "Female",
+    "about": "Dog mom who enjoys morning jogs, crafting DIY projects, and exploring new coffee shops."
+  }
+]
