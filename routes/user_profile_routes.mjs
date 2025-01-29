@@ -1,12 +1,13 @@
 import express from 'express';
 import UserProfile from '../models/user_profile.mjs';
 import {logger} from '../middleware/logger.mjs';
+import authenticate from '../middleware/authentication.mjs';
 import {validate_route_param_id} from '../middleware/validate_request.mjs';
 
 const router = express.Router();
 
 // Delete All
-router.delete('/', async (req,res)=>{
+router.delete('/', authenticate, async (req,res)=>{
   try{
     const delete_all = await UserProfile.deleteMany({})
     logger.warn('Delete attempted: All data has been deleted!')
@@ -81,7 +82,7 @@ router.put('/:id', validate_route_param_id, async (req,res)=>{
   }
 })
 //Delete by id
-router.delete('/:id', validate_route_param_id, async (req,res)=>{
+router.delete('/:id', authenticate, validate_route_param_id, async (req,res)=>{
   try{
     const delete_one = await UserProfile
     .findByIdAndDelete(req.params.id)

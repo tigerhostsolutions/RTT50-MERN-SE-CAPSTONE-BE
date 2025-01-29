@@ -2,11 +2,12 @@ import express from 'express';
 import MatchMaker from '../models/matchmaker_profile.mjs';
 import {logger} from '../middleware/logger.mjs';
 import {validate_route_param_id} from '../middleware/validate_request.mjs';
+import authenticate from '../middleware/authentication.mjs';
 
 const router = express.Router();
 
 // Delete All
-router.delete('/', async (req,res)=>{
+router.delete('/', authenticate, async (req,res)=>{
   try{
     const delete_all = await MatchMaker.deleteMany({})
     logger.warn('Delete attempted: All data has been deleted!')
@@ -81,7 +82,7 @@ router.put('/:id', validate_route_param_id, async (req,res)=>{
   }
 })
 //Delete by id
-router.delete('/:id', validate_route_param_id, async (req,res)=>{
+router.delete('/:id', authenticate, validate_route_param_id, async (req,res)=>{
   try{
     const delete_one = await MatchMaker
     .findByIdAndDelete(req.params.id)
