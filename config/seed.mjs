@@ -3,8 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import data models
-import MatchMaker from '../models/matchmaker_profile.mjs';
-import UserProfile from '../models/user_profile.mjs';
+import FemaleProfileModel from '../models/femaleProfiles.mjs';
+import MaleProfileModel from '../models/maleProfiles.mjs';
 
 // Get __dirname equivalent in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -22,37 +22,37 @@ const readJsonFile = async (filePath) => {
   }
 }
 
-const seedMatchMaker = async () => {
+const seedFemaleProfiles = async () => {
   try {
-    const exists = await MatchMaker.findOne();//Check if data already exists
+    const exists = await FemaleProfileModel.findOne();//Check if data already exists
     if (exists) {
-      console.log('Data for MatchMaker already seeded.');
+      console.log('Data for FemaleProfileModel already seeded.');
       return;
     }
     //read seed data from file
-    const data = await readJsonFile('../data/matchmaker_data.json');
-    await MatchMaker.insertMany(data);
-    console.log('MatchMaker seeding completed.');
+    const data = await readJsonFile('../data/femaleData.json');
+    await FemaleProfileModel.insertMany(data);
+    console.log('FemaleProfileModel seeding completed.');
   }
   catch (error) {
-    console.error('Error seeding MatchMaker:', error.message);
+    console.error('Error seeding FemaleProfileModel:', error.message);
   }
 }
 
-const seedUserProfile = async () => {
+const seedMaleProfiles = async () => {
   try {
-    const exists = await UserProfile.findOne();//Check if data already exists
+    const exists = await MaleProfileModel.findOne();//Check if data already exists
     if (exists) {
-      console.log('Data for User Profile already seeded.');
+      console.log('Data for MaleProfileModel already seeded.');
       return;
     }
     //read seed data from file
-    const data = await readJsonFile('../data/userprofile_data.json');
-    await UserProfile.insertMany(data);
-    console.log('User Profile seeding completed.');
+    const data = await readJsonFile('../data/maleData.json');
+    await MaleProfileModel.insertMany(data);
+    console.log('MaleProfileModel seeding completed.');
   } catch (error) {
-    console.error('Error seeding User Profile:', error.message);
+    console.error('Error seeding MaleProfileModel:', error.message);
   }
 }
 
-export { seedMatchMaker, seedUserProfile };
+export { seedFemaleProfiles, seedMaleProfiles };

@@ -1,34 +1,34 @@
 import express from 'express';
 const router = express.Router();
 import {
-  seedMatchMaker, seedUserProfile,
+  seedFemaleProfiles, seedMaleProfiles,
 } from '../config/seed.mjs';
 
-router.get('/seed/matchmaker', async (req, res) => {
+router.get('/seed/female', async (req, res) => {
   try {
-    await seedMatchMaker();
-    res.status(200).send('MatchMaker seeding requested/delivered!');
+    await seedFemaleProfiles();
+    res.status(200).send('Female Profiles seeding requested/delivered!');
   } catch (error) {
-    res.status(500).send(`Error seeding MatchMaker: ${error.message}`);
+    res.status(500).send(`Error seeding Female Profiles: ${error.message}`);
   }
 });
 
-router.get('/seed/user', async (req, res) => {
+router.get('/seed/male', async (req, res) => {
   try {
-    await seedUserProfile();
-    res.status(200).send('User seeding requested/delivered!');
+    await seedMaleProfiles();
+    res.status(200).send('Male Profiles seeding requested/delivered!');
   } catch (error) {
-    res.status(500).send(`Error seeding User: ${error.message}`);
+    res.status(500).send(`Error seeding Male Profiles: ${error.message}`);
   }
 });
 
 router.get('/seed/all', async (req, res) => {
   try {
-    const promises = [seedMatchMaker(), seedUserProfile()];
+    const promises = [seedFemaleProfiles(), seedMaleProfiles()];
     await Promise.all(promises);
-    res.status(200).send('Seeding for all models completed!');
+    res.status(200).send('Seeding for all profiles completed!');
   } catch (error) {
-    res.status(500).send(`Error seeding all models: ${error.message}`);
+    res.status(500).send(`Error seeding all profiles: ${error.message}`);
   }
 });
 

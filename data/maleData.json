@@ -1,8 +1,8 @@
 [
   {"name": "John D'oh",
     "age": 39,
-    "gender": "male",
+    "gender": "Male",
     "bio": "Massage Therapist turned Software Engineer! Loves pizza and coding.",
-    "photo": "./data/male.png"
+    "photo": "/images/male.png"
   }
 ]

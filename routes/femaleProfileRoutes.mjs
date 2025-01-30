@@ -1,5 +1,5 @@
 import express from 'express';
-import MatchMaker from '../models/matchmaker_profile.mjs';
+import FemaleProfiles from '../models/femaleProfiles.mjs';
 import {logger} from '../middleware/logger.mjs';
 import {validate_route_param_id} from '../middleware/validate_request.mjs';
 import authenticate from '../middleware/authentication.mjs';
@@ -9,7 +9,7 @@ const router = express.Router();
 // Delete All
 router.delete('/', async (req, res) => {
   try {
-    const delete_all = await MatchMaker.deleteMany({});
+    const delete_all = await FemaleProfiles.deleteMany({});
     logger.warn('Delete attempted: All data has been deleted!');
     console.warn('Delete attempted: All data has been deleted!');
     res.json(delete_all);
@@ -30,8 +30,8 @@ router.get('/', async (req, res) => {
     if (insertion) filters.insertion = {$regex: insertion, $options: 'i'};
 
     // Perform the filtered search
-    const results = await MatchMaker.find(filters);
-    res.render('profileCard', {seedData: results});
+    const femaleResults = await FemaleProfiles.find(filters);
+    res.render('profileCard', {femaleData: femaleResults, maleData: []});
   }
   catch (e) {
     res.status(500).json({errors: e.message});
@@ -42,11 +42,10 @@ router.get('/', async (req, res) => {
 router.get('/filter/:param', async (req, res) => {
   try {
     const filter_key = req.params.param.toLowerCase();
-    const filtered_data = await MatchMaker.find({
+    const filtered_data = await FemaleProfiles.find({
       name: {$regex: new RegExp(filter_key, 'i')},
     });
-
-    res.render('profileCard', {seedData: filtered_data});
+    res.render('profileCard', {femaleData: filtered_data, maleData: []});
   }
   catch (e) {
     res.status(500).json({error: e.message});
@@ -55,8 +54,8 @@ router.get('/filter/:param', async (req, res) => {
 // Retrieve by id
 router.get('/:id', validate_route_param_id, async (req, res) => {
   try {
-    const get_one = await MatchMaker.findById(req.params.id);
-    res.render('profileCard', {seedData: [get_one] });
+    const get_one = await FemaleProfiles.findById(req.params.id);
+    res.render('profileCard', {femaleData: [get_one], maleData: [] });
   }
   catch (e) {
     res.status(500).json({error: e.message});
@@ -65,7 +64,7 @@ router.get('/:id', validate_route_param_id, async (req, res) => {
 //Add new
 router.post('/', async (req, res) => {
   try {
-    const create = await MatchMaker.create(req.body);
+    const create = await FemaleProfiles.create(req.body);
     console.log(req.body);
     res.json(create);
   }
@@ -76,7 +75,7 @@ router.post('/', async (req, res) => {
 //Update by id
 router.put('/:id', validate_route_param_id, async (req, res) => {
   try {
-    const update = await MatchMaker.findByIdAndUpdate(req.params.id, req.body);
+    const update = await FemaleProfiles.findByIdAndUpdate(req.params.id, req.body);
     res.json(update);
   }
   catch (e) {
@@ -87,7 +86,7 @@ router.put('/:id', validate_route_param_id, async (req, res) => {
 router.delete('/:id', authenticate, validate_route_param_id,
     async (req, res) => {
       try {
-        const delete_one = await MatchMaker.findByIdAndDelete(req.params.id);
+        const delete_one = await FemaleProfiles.findByIdAndDelete(req.params.id);
         logger.warn('Delete attempted: Item has been deleted!');
         console.warn('Delete attempted: Item has been deleted!');
         res.json(delete_one);

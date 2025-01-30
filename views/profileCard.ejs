@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./cardStyles.css">
-    <title>Profile Cards</title>
-</head>
-<body>
-<div id="card-container">
-    <% seedData.forEach(profile => { %>
-        <div class="card">
-            <img src="<%= profile.photo %>" alt="<%= profile.name %>">
-            <h3><%= profile.name %></h3>
-            <p>Age: <%= profile.age %></p>
-            <p>Gender: <%= profile.gender %></p>
-            <p>Bio: <%= profile.bio %></p>
-        </div>
-    <% }) %>
-</div>
-</body>
-</html>
+<html lang = "en" >
+<head >
+    <meta charset = "UTF-8" >
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0" >
+    <link rel = "stylesheet" type="text/css" href = "../public/css/cardStyles.css" >
+    <title >Profile Cards</title >
+</head >
+<body >
+<div id = "card-container" >
+    <% if (maleData || []) { %>
+        <% maleData.forEach(profile => { %>
+            <div class = "card" >
+                <img src = "<%= profile.photo; %>" alt = "<%= profile.name; %>" >
+                <h3 ><%= profile.name; %></h3 >
+                <p >Age: <%= profile.age; %></p >
+                <p >Gender: <%= profile.gender; %></p >
+                <p >Bio: <%= profile.bio; %></p >
+            </div >
+        <% }); %>
+    <% } %>
+</div >
+<div id = "card-container" >
+    <% if (femaleData || []) { %>
+        <% femaleData.forEach(profile => { %>
+            <div class = "card" >
+                <img src = "<%= profile.photo; %>" alt = "<%= profile.name; %>" >
+                <h3 ><%= profile.name; %></h3 >
+                <p >Age: <%= profile.age; %></p >
+                <p >Gender: <%= profile.gender; %></p >
+                <p >Bio: <%= profile.bio; %></p >
+            </div >
+        <% }); %>
+    <% } %>
+
+</div >
+</body >
+</html >

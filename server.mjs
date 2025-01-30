@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import conn from './config/db.mjs';
 import {logger} from './middleware/logger.mjs';
-import UserProfiles from './models/user_profile.mjs';// user profiles
-import MatchMaker from './models/matchmaker_profile.mjs';// match profiles
+import MaleProfiles from './models/maleProfiles.mjs';
+import FemaleProfiles from './models/femaleProfiles.mjs';
 import SeedRoutes from './routes/seed_routes.mjs';
 import fs from 'fs/promises'; // Import the File System module to read JSON file
 import cors from 'cors';
@@ -18,47 +18,66 @@ conn();
 // app.use(cors)
 app.use(express.json());
 
-const UserProfileRoutes = await import('./routes/user_profile_routes.mjs').then(
+const MaleProfileRoutes = await import('./routes/maleProfileRoutes.mjs').then(
     module => module.default);
-const MatchMakerRoute = await import('./routes/matchmaker_route.mjs').then(
+const FemaleProfileRoutes = await import('./routes/femaleProfileRoutes.mjs').then(
     module => module.default);
 
 // Route Definitions
-app.use('/bsocial/user', UserProfileRoutes);
-app.use('/bsocial/matchmaker', MatchMakerRoute);
+app.use('/bsocial/profiles/male', MaleProfileRoutes);
+app.use('/bsocial/profiles/female', FemaleProfileRoutes);
 
-app.set("views", "./views"); // This should match where your .ejs files are located
+// Set configuration settings - key/value pairs
+app.set("public", "./public"); // .static files are located
+app.set("views", "./views"); // .ejs files are located
 app.set('view engine', 'ejs');
+
+// Serve static files
 app.use(express.static('views'));
+app.use(express.static('public'));
 
 // Simulate __dirname in ES module
 const __filename = fileURLToPath(import.meta.url); // Get the file's full path
 const __dirname = path.dirname(__filename); // Get the file's directory path
 app.use('/data', express.static(path.join(__dirname, 'data')));
+app.use('/public', express.static(path.join(__dirname, 'public'))); // need
+// for css to work on home route
 
 // Route Home
-app.get('/', async (req, res) => {
+app.get('/bsocial', async (req, res) => {
   try {
-    // Read the JSON file
-    const dataPath = './data/matchmaker_data.json'; // Adjust path if data.json is elsewhere
-    const rawData = await fs.readFile(dataPath, 'utf-8');
-    const jsonData = JSON.parse(rawData); // Convert raw JSON string to JavaScript object
-    // Render the profileCard.ejs file with the JSON data
-    res.render('profileCard', { seedData: jsonData });
+    // File paths
+    const maleProfilesPath = './data/maleData.json';
+    const femaleProfilesPath = './data/femaleData.json';
+
+    // Read and parse JSON files concurrently
+    const [maleProfilesRaw, femaleProfilesRaw] = await Promise.all([
+      fs.readFile(maleProfilesPath, 'utf-8'),
+      fs.readFile(femaleProfilesPath, 'utf-8')
+    ]);
+
+    const maleProfilesData = JSON.parse(maleProfilesRaw);
+    const femaleProfilesData = JSON.parse(femaleProfilesRaw);
+
+    // Render the profileCard view with both data objects
+    res.render('profileCard', {
+      maleData: maleProfilesData,
+      femaleData: femaleProfilesData
+    });
   } catch (err) {
-    logger.error(`Error reading JSON file: ${err.message}`);
+    // Log errors and respond with a 500 status
+    logger.error(`Error loading data: ${err.message}`);
     res.status(500).send("Error loading data.");
   }
 });
 
 app.use('/bsocial/', SeedRoutes);// Route seed
-
 //Route to seed all data
 app.get('/bsocial/seed/all', async (req, res) => {
   try {
     await Promise.all([
-      UserProfiles.deleteMany({}),
-      MatchMaker.deleteMany({})
+      MaleProfiles.deleteMany({}),
+      FemaleProfiles.deleteMany({})
     ]);
     logger.warn('Delete on all data attempted at startup!');
     console.warn('Delete on all data attempted at startup!')

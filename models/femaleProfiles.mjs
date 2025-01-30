@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const matchMakerSchema = new mongoose.Schema({
+const femaleProfileSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -23,6 +23,6 @@ const matchMakerSchema = new mongoose.Schema({
   }
 })
 
-const MatchMaker = mongoose.model('Match Maker', matchMakerSchema);
+const FemaleProfileModel = mongoose.model('Female Profile Model', femaleProfileSchema);
 
-export default MatchMaker;
+export default FemaleProfileModel;
