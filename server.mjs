@@ -5,6 +5,7 @@ import {logger} from './middleware/logger.mjs';
 import UserProfiles from './models/user_profile.mjs';// user profiles
 import MatchMaker from './models/matchmaker_profile.mjs';// match profiles
 import SeedRoutes from './routes/seed_routes.mjs';
+import fs from 'fs/promises'; // Import the File System module to read JSON file
 import cors from 'cors';
 
 dotenv.config();
@@ -24,9 +25,29 @@ const MatchMakerRoute = await import('./routes/matchmaker_route.mjs').then(
 app.use('/bsocial/user', UserProfileRoutes);
 app.use('/bsocial/matchmaker', MatchMakerRoute);
 
+app.set("views", "./views"); // This should match where your .ejs files are located
+app.set('view engine', 'ejs');
+app.use(express.static('views'));
+
+
 // Route Home
-app.get('/', (req, res) => {
-  res.send('Welcome')
+app.get('/', async (req, res) => {
+  // res.send('Welcome')
+
+  try {
+    // Read the JSON file
+    const dataPath = './data/matchmaker_data.json'; // Adjust this path if
+    // `data.json` is
+    // elsewhere
+    const rawData = await fs.readFile(dataPath, 'utf-8');
+    const jsonData = JSON.parse(rawData); // Convert raw JSON string to JavaScript object
+
+    // Render the profileCard.ejs file with the JSON data
+    res.render('profileCard', { seedData: jsonData });
+  } catch (err) {
+    logger.error(`Error reading JSON file: ${err.message}`);
+    res.status(500).send("Error loading data.");
+  }
 });
 
 app.use('/bsocial/', SeedRoutes);// Route seed

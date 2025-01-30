@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cardStyles.css">
+    <title>Profile Cards</title>
+</head>
+<body>
+<div id="card-container">
+    <% seedData.forEach(profile => { %>
+        <div class="card">
+            <img src="<%= profile.profilePicture %>" alt="<%= profile.name %>">
+            <h3><%= profile.name %></h3>
+            <p>Age: <%= profile.age %></p>
+            <p>Gender: <%= profile.gender %></p>
+            <p>Bio: <%= profile.about %></p>
+        </div>
+    <% }) %>
+</div>
+</body>
+</html>
