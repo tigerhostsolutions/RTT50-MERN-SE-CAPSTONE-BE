@@ -7,7 +7,7 @@ import {validate_route_param_id} from '../middleware/validate_request.mjs';
 const router = express.Router();
 
 // Delete All
-router.delete('/', authenticate, async (req,res)=>{
+router.delete('/', async (req,res)=>{
   try{
     const delete_all = await UserProfile.deleteMany({})
     logger.warn('Delete attempted: All data has been deleted!')
@@ -29,9 +29,8 @@ router.get('/', async (req, res) => {
     if (insertion) filters.insertion = { $regex: insertion, $options: 'i' };
 
     // Perform the filtered search
-    const results = await UserProfile
-    .find(filters);
-    res.json(results);
+    const results = await UserProfile.find(filters);
+    res.render('profileCard', {seedData: results});
   } catch (e) {
     res.status(500).json({ errors: e.message });
   }
@@ -43,7 +42,7 @@ router.get('/filter/:param', async (req, res) => {
     const filtered_data = await UserProfile.find({
       name: { $regex: new RegExp(filter_key, "i") },
     });
-    res.json(filtered_data);
+    res.render('profileCard', {seedData: filtered_data});
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -51,9 +50,8 @@ router.get('/filter/:param', async (req, res) => {
 // Retrieve by id
 router.get('/:id', validate_route_param_id, async (req, res) => {
   try {
-    const get_one = await UserProfile
-    .findById(req.params.id);
-    res.json(get_one);
+    const get_one = await UserProfile.findById(req.params.id);
+    res.render('profileCard', {seedData: [get_one] });
   }
   catch (e) {
     res.status(500).json({error: e.message});
