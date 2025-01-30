@@ -13,9 +13,13 @@ const matchMakerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  about: {
+  bio: {
     type: String,
     required: true
+  },
+  photo: {
+    type: String,
+    require: false
   }
 })
 

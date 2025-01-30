@@ -3,60 +3,70 @@
     "name": "Emma Johnson",
     "age": 28,
     "gender": "Female",
-    "about": "Software engineer with a love for hiking, photography, and cooking delicious meals."
+    "bio": "Software engineer with a love for hiking, photography, and cooking delicious meals.",
+    "photo": "./data/female.png"
   },
   {
     "name": "Sophia Miller",
     "age": 25,
     "gender": "Female",
-    "about": "Nature lover who spends weekends hiking and volunteering at local animal shelters."
+    "bio": "Nature lover who spends weekends hiking and volunteering at local animal shelters.",
+    "photo": "./data/female.png"
   },
   {
     "name": "Ava Davis",
     "age": 27,
     "gender": "Female",
-    "about": "Fitness enthusiast who loves yoga, running, and cooking healthy meals."
+    "bio": "Fitness enthusiast who loves yoga, running, and cooking healthy meals.",
+    "photo": "./data/female.png"
   },
   {
     "name": "Isabella Martinez",
     "age": 26,
     "gender": "Female",
-    "about": "An artist at heart who loves painting, attending art galleries, and drinking great coffee."
+    "bio": "An artist at heart who loves painting, attending art galleries, and drinking great coffee.",
+    "photo": "./data/female.png"
   },
   {
     "name": "Mia Thomas",
     "age": 24,
     "gender": "Female",
-    "about": "A budding writer who loves reading, gardening, and indulging in good conversations."
+    "bio": "A budding writer who loves reading, gardening, and indulging in good conversations.",
+    "photo": "./data/female.png"
   },
   {
     "name": "Olivia Harris",
     "age": 29,
     "gender": "Female",
-    "about": "History enthusiast who loves museums, writing novels, and taking long walks in the park."
+    "bio": "History enthusiast who loves museums, writing novels, and taking long walks in the park.",
+    "photo":  "./data/female.png"
   },
   {
     "name": "Charlotte Robinson",
     "age": 30,
     "gender": "Female",
-    "about": "A coffee lover who enjoys baking, salsa dancing, and reading mystery novels."
+    "bio": "A coffee lover who enjoys baking, salsa dancing, and reading mystery novels.",
+    "photo":  "./data/female.png"
   },
   {
     "name": "Amelia Clark",
     "age": 27,
     "gender": "Female",
-    "about": "Adventure seeker who loves skiing, hiking, and capturing moments with her camera."
+    "bio": "Adventure seeker who loves skiing, hiking, and capturing moments with her camera.",
+    "photo":  "./data/female.png"
   },
   {
     "name": "Abigail Lewis",
     "age": 26,
     "gender": "Female",
-    "about": "Loves music festivals, trying new vegan recipes, and gardening on sunny days."
+    "bio": "Loves music festivals, trying new vegan recipes, and gardening on sunny days.",
+    "photo":  "./data/female.png"
   },
   {
     "name": "Harper Walker",
     "age": 28,
     "gender": "Female",
-    "about": "Dog mom who enjoys morning jogs, crafting DIY projects, and exploring new coffee shops."
+    "bio": "Dog mom who enjoys morning jogs, crafting DIY projects, and exploring new coffee shops.",
+    "photo":  "./data/female.png"
   }
 ]

@@ -10,11 +10,11 @@
 <div id="card-container">
     <% seedData.forEach(profile => { %>
         <div class="card">
-            <img src="<%= profile.profilePicture %>" alt="<%= profile.name %>">
+            <img src="<%= profile.photo %>" alt="<%= profile.name %>">
             <h3><%= profile.name %></h3>
             <p>Age: <%= profile.age %></p>
             <p>Gender: <%= profile.gender %></p>
-            <p>Bio: <%= profile.about %></p>
+            <p>Bio: <%= profile.bio %></p>
         </div>
     <% }) %>
 </div>
