@@ -21,13 +21,13 @@ router.delete('/', async (req, res) => {
 // Retrieve All or Filter by Query Parameters
 router.get('/', async (req, res) => {
   try {
-    const {name, action, insertion} = req.query;
+    const {name, age, gender} = req.query;
     const filters = {};
 
     // Apply filters dynamically based on provided query parameters
     if (name) filters.name = {$regex: name, $options: 'i'};
-    if (action) filters.action = {$regex: action, $options: 'i'};
-    if (insertion) filters.insertion = {$regex: insertion, $options: 'i'};
+    if (age) filters.age = {$regex: age, $options: 'i'};
+    if (gender) filters.gender = {$regex: gender, $options: 'i'};
 
     // Perform the filtered search
     const femaleResults = await FemaleProfiles.find(filters);

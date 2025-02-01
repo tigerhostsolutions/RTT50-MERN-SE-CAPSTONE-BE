@@ -1,5 +1,5 @@
 import express from 'express';
-import MaleProfiles from '../models/maleProfiles.mjs';
+import User from 'models/registration.mjs';
 import {logger} from '../middleware/logger.mjs';
 import authenticate from '../middleware/authentication.mjs';
 import {validate_route_param_id} from '../middleware/validate_request.mjs';
@@ -9,7 +9,7 @@ const router = express.Router();
 // Delete All
 router.delete('/', async (req,res)=>{
   try{
-    const delete_all = await MaleProfiles.deleteMany({})
+    const delete_all = await User.deleteMany({})
     logger.warn('Delete attempted: All data has been deleted!')
     console.warn('Delete attempted: All data has been deleted!')
     res.json(delete_all)
@@ -29,8 +29,8 @@ router.get('/', async (req, res) => {
     if (gender) filters.gender = { $regex: gender, $options: 'i' };
 
     // Perform the filtered search
-    const maleResults = await MaleProfiles.find(filters);
-    res.render('profileCard', {maleData: maleResults, femaleData: []});
+    const [maleResults, femaleResults] = await User.find(filters);
+    res.render('profileCard', {maleData: maleResults, femaleData: femaleResults});
 
   } catch (e) {
     res.status(500).json({ errors: e.message });
@@ -40,10 +40,10 @@ router.get('/', async (req, res) => {
 router.get('/filter/:param', async (req, res) => {
   try {
     const filter_key = req.params.param.toLowerCase();
-    const filtered_data = await MaleProfiles.find({
+    const filtered_data = await User.find({
       name: { $regex: new RegExp(filter_key, "i") },
     });
-    res.render('profileCard', {maleData: filtered_data, femaleData: []});
+    res.render('profileCard', {maleData: filtered_data, femaleData: filtered_data});
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -51,8 +51,8 @@ router.get('/filter/:param', async (req, res) => {
 // Retrieve by id
 router.get('/:id', validate_route_param_id, async (req, res) => {
   try {
-    const get_one = await MaleProfiles.findById(req.params.id);
-    res.render('profileCard', {maleData: [get_one], femaleData: []});
+    const get_one = await User.findById(req.params.id);
+    res.render('profileCard', {maleData: [get_one], femaleData: [get_one]});
   }
   catch (e) {
     res.status(500).json({error: e.message});
@@ -61,7 +61,7 @@ router.get('/:id', validate_route_param_id, async (req, res) => {
 //Add new
 router.post('/', async (req, res) => {
   try {
-    const create = await MaleProfiles
+    const create = await User
     .create(req.body);
     console.log(req.body);
     res.json(create);
@@ -73,7 +73,7 @@ router.post('/', async (req, res) => {
 //Update by id
 router.put('/:id', validate_route_param_id, async (req,res)=>{
   try {
-    const update= await MaleProfiles
+    const update= await User
     .findByIdAndUpdate(req.params.id, req.body)
     res.json(update)
   }catch (e) {
@@ -83,7 +83,7 @@ router.put('/:id', validate_route_param_id, async (req,res)=>{
 //Delete by id
 router.delete('/:id', authenticate, validate_route_param_id, async (req,res)=>{
   try{
-    const delete_one = await MaleProfiles
+    const delete_one = await User
     .findByIdAndDelete(req.params.id)
     logger.warn('Delete attempted: Item has been deleted!')
     console.warn('Delete attempted: Item has been deleted!')

@@ -309,3 +309,58 @@
 [2025-01-30T22:45:50.013Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
 [2025-01-30T22:46:47.099Z] INFO: Server is running on http://localhost:3000
 [2025-01-30T22:46:51.709Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-01-30T22:53:09.820Z] INFO: Server is running on http://localhost:3000
+[2025-01-30T22:53:14.598Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-01-30T22:54:09.313Z] WARN: Delete attempted: All data has been deleted!
+[2025-01-30T22:54:13.360Z] WARN: Delete attempted: All data has been deleted!
+[2025-01-30T23:00:39.376Z] WARN: Delete attempted: All data has been deleted!
+[2025-01-30T23:00:43.580Z] WARN: Delete attempted: All data has been deleted!
+[2025-01-30T23:41:10.062Z] INFO: Server is running on http://localhost:3000
+[2025-01-30T23:41:14.581Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-01-30T23:44:04.267Z] INFO: Server is running on http://localhost:3000
+[2025-01-30T23:44:09.245Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-01-30T23:44:10.861Z] ERROR: Error loading data: maleProfilesData is not defined
+[2025-01-30T23:44:47.209Z] ERROR: Error loading data: maleProfilesData is not defined
+[2025-01-30T23:46:02.695Z] INFO: Server is running on http://localhost:3000
+[2025-01-30T23:46:07.355Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-01-31T03:15:37.020Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:15:41.722Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-01-31T03:16:32.521Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:16:37.086Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-01-31T03:18:47.970Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:18:52.704Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-01-31T03:28:23.384Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:28:28.116Z] ERROR: Error loading data: maleProfilesData is not defined
+[2025-01-31T03:28:28.341Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-01-31T03:38:27.990Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:38:32.755Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-01-31T03:39:43.659Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:39:46.357Z] ERROR: Error loading data: res.body is not a function
+[2025-01-31T03:39:48.438Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-01-31T03:39:50.070Z] ERROR: Error loading data: res.body is not a function
+[2025-01-31T03:40:09.581Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:40:11.121Z] ERROR: Error loading data: res.html is not a function
+[2025-01-31T03:40:13.880Z] ERROR: Error loading data: res.html is not a function
+[2025-01-31T03:40:14.368Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-01-31T03:40:41.557Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:40:47.210Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-01-31T03:42:06.352Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T03:42:12.380Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-01-31T05:24:51.638Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T05:24:55.914Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-01-31T07:41:53.483Z] INFO: Server is running on http://localhost:3000
+[2025-01-31T07:41:58.150Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-02-01T03:44:09.181Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T03:44:15.220Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-02-01T03:46:45.542Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T03:46:51.712Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-02-01T03:53:40.707Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T03:53:45.911Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-02-01T03:58:15.561Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T03:58:20.221Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-02-01T05:05:20.857Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T05:05:26.638Z] INFO: MongoDb Connection cluster0-shard-00-01.g8ogg.mongodb.net Successful.
+[2025-02-01T06:01:32.023Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T06:01:36.863Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-02-01T06:02:11.925Z] INFO: Server is running on http://localhost:3000
+[2025-02-01T06:02:16.560Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
