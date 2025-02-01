@@ -22,18 +22,18 @@ const MaleProfileRoutes = await import('./routes/maleProfileRoutes.mjs').then(
     module => module.default);
 const FemaleProfileRoutes = await import('./routes/femaleProfileRoutes.mjs').then(
     module => module.default);
-// const UserRoutes = await import('./routes/userRoutes.mjs').then(
-//     module => module.default);
-// const LoginRoutes = await import('./routes/loginRoutes.mjs').then(
-//     module => module.default);
+const LoginRoutes = await import('./routes/loginRoutes.mjs').then(
+    module => module.default);
 const RegistrationRoutes = await import('./routes/registrationRoutes.mjs').then(
     module => module.default);
+// const UserRoutes = await import('./routes/userRoutes.mjs').then(
+//     module => module.default);
 
 // Route Definitions
 app.use('/bsocial/profiles/male', MaleProfileRoutes);
 app.use('/bsocial/profiles/female', FemaleProfileRoutes);
-app.use('/bsocial/registration', RegistrationRoutes);
-// app.use('/bsocial/login', LoginRoutes);
+app.use('/bsocial/register', RegistrationRoutes);
+app.use('/bsocial/login', LoginRoutes);
 // app.use('/bsocial/user', UserRoutes);
 
 

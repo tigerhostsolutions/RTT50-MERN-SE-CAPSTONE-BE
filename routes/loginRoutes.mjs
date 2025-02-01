@@ -1,6 +1,7 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
 const router = express.Router();
 
 // Mock User (Replace with Database Query in Production)
@@ -11,8 +12,7 @@ const users = [
   },
 ];
 
-// POST /api/login
-router.post('/api/login', async (req, res) => {
+router.post('/', async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -35,4 +35,4 @@ router.post('/api/login', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
