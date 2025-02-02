@@ -34,7 +34,7 @@ app.use('/male_profiles', MaleProfileRoutes);
 app.use('/female_profiles', FemaleProfileRoutes);
 app.use('/register', RegistrationRoutes);
 app.use('/login', LoginRoutes);
-// app.use('/bsocial/user', UserRoutes);
+// app.use('/bsocial/registrant', UserRoutes);
 
 
 

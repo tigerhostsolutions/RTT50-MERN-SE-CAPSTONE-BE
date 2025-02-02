@@ -392,3 +392,7 @@
 [2025-02-02T16:13:58.819Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
 [2025-02-02T16:14:41.243Z] INFO: Server is running on http://localhost:3000
 [2025-02-02T16:14:45.845Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-02-02T17:10:44.149Z] INFO: Server is running on http://localhost:3000
+[2025-02-02T17:10:49.563Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
+[2025-02-02T17:13:35.737Z] INFO: Server is running on http://localhost:3000
+[2025-02-02T17:13:40.552Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
