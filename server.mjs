@@ -30,10 +30,10 @@ const RegistrationRoutes = await import('./routes/registrationRoutes.mjs').then(
 //     module => module.default);
 
 // Route Definitions
-app.use('/bsocial/profiles/male', MaleProfileRoutes);
-app.use('/bsocial/profiles/female', FemaleProfileRoutes);
-app.use('/bsocial/register', RegistrationRoutes);
-app.use('/bsocial/login', LoginRoutes);
+app.use('/male_profiles', MaleProfileRoutes);
+app.use('/female_profiles', FemaleProfileRoutes);
+app.use('/register', RegistrationRoutes);
+app.use('/login', LoginRoutes);
 // app.use('/bsocial/user', UserRoutes);
 
 
@@ -55,7 +55,7 @@ app.use('/data', express.static(path.join(__dirname, 'data')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Route Home
-app.get('/bsocial', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     // // File paths
     // const maleProfilesPath = './data/maleData.json';
@@ -84,9 +84,9 @@ app.get('/bsocial', async (req, res) => {
   }
 });
 
-app.use('/bsocial/', SeedRoutes);// Route seed
+app.use('/', SeedRoutes);// Route seed
 //Route to seed all data
-app.get('/bsocial/seed/all', async (req, res) => {
+app.get('/seed/all', async (req, res) => {
   try {
     await Promise.all([
       MaleProfiles.deleteMany({}),
