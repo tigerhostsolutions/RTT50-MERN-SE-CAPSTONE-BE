@@ -5,15 +5,15 @@ import {logger} from './middleware/logger.mjs';
 import MaleProfiles from './models/maleProfiles.mjs';
 import FemaleProfiles from './models/femaleProfiles.mjs';
 import SeedRoutes from './routes/seed_routes.mjs';
-import fs from 'fs/promises'; // Import the File System module to read JSON file
 import cors from 'cors';
 import path from 'path';
 import {fileURLToPath} from 'url';
+import Registration from './models/registration.mjs';
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT;
-// conn();
+const port = process.env.PORT || 3000;
+conn();
 
 app.use(cors({ origin: 'http://localhost:5173', credentials: true, }))
 app.use(express.json());
@@ -26,15 +26,15 @@ const LoginRoutes = await import('./routes/loginRoutes.mjs').then(
     module => module.default);
 const RegistrationRoutes = await import('./routes/registrationRoutes.mjs').then(
     module => module.default);
-// const UserRoutes = await import('./routes/userRoutes.mjs').then(
-//     module => module.default);
+const DashboardRoutes = await import('./routes/dashboardRoute.mjs').then(
+    module => module.default);
 
 // Route Definitions
 app.use('/male_profiles', MaleProfileRoutes);
 app.use('/female_profiles', FemaleProfileRoutes);
 app.use('/register', RegistrationRoutes);
 app.use('/login', LoginRoutes);
-// app.use('/bsocial/registrant', UserRoutes);
+app.use('/dashboard', DashboardRoutes);
 
 // Set configuration settings - key/value pairs
 app.set('public', './public'); // .static files are located
@@ -52,30 +52,11 @@ app.use('/data', express.static(path.join(__dirname, 'data')));
 // need for css to work on home route
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-
-
 // Route Home
 app.get('/', async (req, res) => {
   try {
-    // // File paths
-    // const maleProfilesPath = './data/maleData.json';
-    // const femaleProfilesPath = './data/femaleData.json';
-    //
-    // // Read and parse JSON files concurrently
-    // const [maleProfilesRaw, femaleProfilesRaw] = await Promise.all([
-    //   fs.readFile(maleProfilesPath, 'utf-8'),
-    //   fs.readFile(femaleProfilesPath, 'utf-8')
-    // ]);
-    //
-    // const maleProfilesData = JSON.parse(maleProfilesRaw);
-    // const femaleProfilesData = JSON.parse(femaleProfilesRaw);
-    //
-    // // Render the profileCard view with both data objects
-    // res.render('profileCard', {
-    //   maleData: maleProfilesData,
-    //   femaleData: femaleProfilesData
-    // });
-    res.send('Hello and Welcome')
+    const registrants = await Registration.find().sort({ createdAt: -1 });
+    res.render('home', {registrants});
   }
   catch (err) {
     // Log errors and respond with a 500 status
@@ -84,21 +65,21 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.use('/', SeedRoutes);// Route seed
-//Route to seed all data
-app.get('/seed/all', async (req, res) => {
-  try {
-    await Promise.all([
-      MaleProfiles.deleteMany({}),
-      FemaleProfiles.deleteMany({}),
-    ]);
-    logger.warn('Delete on all data attempted at startup!');
-    console.warn('Delete on all data attempted at startup!');
-  }
-  catch (e) {
-    logger.error(`Error deleting data: ${e.message}`);
-  }
-});
+// app.use('/', SeedRoutes);// Route seed
+// //Route to seed all data
+// app.get('/seed/all', async (req, res) => {
+//   try {
+//     await Promise.all([
+//       MaleProfiles.deleteMany({}),
+//       FemaleProfiles.deleteMany({}),
+//     ]);
+//     logger.warn('Delete on all data attempted at startup!');
+//     console.warn('Delete on all data attempted at startup!');
+//   }
+//   catch (e) {
+//     logger.error(`Error deleting data: ${e.message}`);
+//   }
+// });
 
 // Starts the server
 app.listen(port, () => {
