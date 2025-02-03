@@ -414,3 +414,28 @@
 [2025-02-02T19:05:55.690Z] INFO: MongoDb Connection cluster0-shard-00-00.g8ogg.mongodb.net Successful.
 [2025-02-02T19:10:39.704Z] INFO: Server is running on http://localhost:3000
 [2025-02-02T19:10:44.601Z] INFO: MongoDb Connection cluster0-shard-00-02.g8ogg.mongodb.net Successful.
+[2025-02-03T00:00:39.796Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T00:01:09.696Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T00:13:00.533Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T00:13:30.463Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T00:51:35.068Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T00:52:03.945Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T00:53:20.192Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T00:53:50.125Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T00:55:30.650Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:00:58.211Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:08:59.288Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:09:37.465Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:11:14.897Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:13:55.826Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:19:15.835Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:41:30.985Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:43:46.439Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:47:56.081Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T01:48:25.219Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T01:59:45.746Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T02:00:15.939Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T02:13:17.639Z] INFO: Server is running on http://localhost:3000
+[2025-02-03T02:13:47.053Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[2025-02-03T02:14:53.108Z] INFO: Server is running on http://localhost:5000
+[2025-02-03T02:15:23.037Z] ERROR: MongoDb Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/

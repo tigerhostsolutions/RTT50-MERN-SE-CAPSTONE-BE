@@ -13,7 +13,7 @@ import {fileURLToPath} from 'url';
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
-conn();
+// conn();
 
 app.use(cors({ origin: 'http://localhost:5173', credentials: true, }))
 app.use(express.json());
@@ -36,8 +36,6 @@ app.use('/register', RegistrationRoutes);
 app.use('/login', LoginRoutes);
 // app.use('/bsocial/registrant', UserRoutes);
 
-
-
 // Set configuration settings - key/value pairs
 app.set('public', './public'); // .static files are located
 app.set('views', './views'); // .ejs files are located
@@ -53,6 +51,8 @@ const __dirname = path.dirname(__filename); // Get the file's directory path
 app.use('/data', express.static(path.join(__dirname, 'data')));
 // need for css to work on home route
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
+
 
 // Route Home
 app.get('/', async (req, res) => {
