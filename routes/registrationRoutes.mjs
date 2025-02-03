@@ -1,9 +1,28 @@
 import express from 'express';
 import Registration from '../models/registration.mjs';
 import bcrypt from 'bcrypt';
+import upload from '../config/multer.mjs';
 
 const router = express.Router();
-
+// Retrieve All or Filter by Query Parameters
+// router.get('/', async (req, res) => {
+//   try {
+//     const { name, age, gender } = req.query;
+//     const filters = {};
+//
+//     // Apply filters dynamically based on provided query parameters
+//     if (name) filters.name = { $regex: name, $options: 'i' };
+//     if (age) filters.age = { $regex: age, $options: 'i' };
+//     if (gender) filters.gender = { $regex: gender, $options: 'i' };
+//
+//     // Perform the filtered search
+//     const results = await Registration.find(filters);
+//     res.render('profileCard', {maleData: maleResults, femaleData: []});
+//
+//   } catch (e) {
+//     res.status(500).json({ errors: e.message });
+//   }
+// });
 // Retrieve by Gender - query param implementation
 router.get('/filter', async (req, res) => {
   try {
@@ -35,11 +54,17 @@ router.get('/filter', async (req, res) => {
 });
 
 //Add new
-router.post('/', async (req, res) => {
+router.post('/', upload.single('photo'), async (req, res) => {
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const create = await Registration.create({ ...req.body, password: hashedPassword });
-    console.log(req.body);
+    const hashedPassword = await bcrypt.hash(req.body.password, 16);
+
+    // Check if a photo is uploaded
+    const profileImage = req.file
+                         ? `/uploads/${req.file.filename}` // Use uploaded file path
+                         : `https://api.dicebear.com/5.x/initials/svg?seed=${req.body.name || 'Default'}`; // Auto-generate profile av
+
+    const create = await Registration.create({ ...req.body, password: hashedPassword, profileImage, });
+    console.log('Registration created:', create);
     res.json(create);
   }
   catch (e) {
