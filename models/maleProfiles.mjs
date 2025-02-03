@@ -23,6 +23,6 @@ const maleProfileSchema = new mongoose.Schema({
   }
 })
 
-const MaleProfileModel = mongoose.model('Male Profile Model', maleProfileSchema);
+const MaleProfileModel = mongoose.model('MaleProfile', maleProfileSchema);
 
 export default MaleProfileModel;

@@ -11,6 +11,6 @@ const zodiacSchema = new mongoose.Schema({
   }
 })
 
-const ZodiacProfile = mongoose.model('Zodiac Profile', zodiacSchema);
+const ZodiacProfile = mongoose.model('ZodiacProfile', zodiacSchema);
 
 export default ZodiacProfile;

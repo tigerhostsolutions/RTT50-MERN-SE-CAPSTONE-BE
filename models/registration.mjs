@@ -24,6 +24,6 @@ const registrationSchema = new mongoose.Schema({
   }
 })
 
-const RegistrationModel = mongoose.model('Registration Model', registrationSchema);
+const RegistrationModel = mongoose.model('RegistrationModel', registrationSchema);
 
 export default RegistrationModel;

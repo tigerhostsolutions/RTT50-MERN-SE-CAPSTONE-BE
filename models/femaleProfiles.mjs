@@ -23,6 +23,6 @@ const femaleProfileSchema = new mongoose.Schema({
   }
 })
 
-const FemaleProfileModel = mongoose.model('Female Profile Model', femaleProfileSchema);
+const FemaleProfileModel = mongoose.model('FemaleProfile', femaleProfileSchema);
 
 export default FemaleProfileModel;
