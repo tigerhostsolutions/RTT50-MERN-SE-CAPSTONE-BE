@@ -20,19 +20,5 @@
         <% }); %>
     <% } %>
 </div >
-<div id = "card-container" >
-    <% if (femaleData || []) { %>
-        <% femaleData.forEach(profile => { %>
-            <div class = "card" >
-                <img src = "<%= profile.photo; %>" alt = "<%= profile.name; %>" >
-                <h3 ><%= profile.name; %></h3 >
-                <p >Age: <%= profile.age; %></p >
-                <p >Gender: <%= profile.gender; %></p >
-                <p >Bio: <%= profile.bio; %></p >
-            </div >
-        <% }); %>
-    <% } %>
-
-</div >
 </body >
 </html >
