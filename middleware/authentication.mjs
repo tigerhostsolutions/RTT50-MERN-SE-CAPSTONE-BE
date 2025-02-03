@@ -1,4 +1,3 @@
-// middleware/authenticate.js
 import jwt from 'jsonwebtoken';
 
 const authenticate = (req, res, next) => {
@@ -14,6 +13,7 @@ const authenticate = (req, res, next) => {
     req.user = decoded; // Attach user payload to the request object
     next(); // Continue to the next handler
   } catch (error) {
+    console.error('Token verification failed:', error.message); // Log detailed error
     return res.status(400).json({ message: 'Invalid token.' });
   }
 };
