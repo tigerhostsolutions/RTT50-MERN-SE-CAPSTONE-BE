@@ -14,10 +14,21 @@ const app = express();
 const port = process.env.PORT || 3000;
 conn();
 
-// app.use(cors({ origin: 'http://localhost:5173', credentials: true, }))
-app.use(cors({ origin: 'https://grasty-mern-capstone-fe.netlify.app',
+const allowedOrigins = [
+  'http://localhost:5173', // Local frontend
+  'https://grasty-mern-capstone-fe.netlify.app' // Deployed frontend
+];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET,PUT,PATCH,POST,DELETE'],
-  credentials: true, }))
+  credentials: true,
+}));
 app.use(express.json());
 
 const MemberRoutes = await import('./routes/memberRoutes.mjs').then(
