@@ -12,7 +12,7 @@ import Registration from './models/registration.mjs';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
-conn();
+// conn();
 
 const allowedOrigins = [
   'http://localhost:5173', // Local frontend
