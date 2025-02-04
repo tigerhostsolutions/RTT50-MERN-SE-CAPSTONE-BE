@@ -12,7 +12,7 @@ import Registration from './models/registration.mjs';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
-// conn();
+conn();
 
 const allowedOrigins = [
   'http://localhost:5173', // Local frontend
@@ -20,7 +20,8 @@ const allowedOrigins = [
 ];
 app.use(cors({
   origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
+    console.log('Request origin:', origin); //debugging
+    if (origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
