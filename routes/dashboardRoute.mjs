@@ -3,7 +3,7 @@ import authMiddleware from '../middleware/authentication.mjs';
 
 const router = express.Router();
 
-router.get('/', authMiddleware, (req, res) => {
+router.get('/', /*authMiddleware,*/ (req, res) => {
   // If the token is valid, the middleware attaches `req.registrant` with the
   // decoded payload
   res.status(200).json({
