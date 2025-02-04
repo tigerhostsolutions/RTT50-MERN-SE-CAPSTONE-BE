@@ -14,7 +14,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 conn();
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true, }))
+// app.use(cors({ origin: 'http://localhost:5173', credentials: true, }))
+app.use(cors({ origin: 'https://grasty-mern-capstone-fe.netlify.app',
+  methods: ['GET,PUT,PATCH,POST,DELETE'],
+  credentials: true, }))
 app.use(express.json());
 
 const MemberRoutes = await import('./routes/memberRoutes.mjs').then(
@@ -27,10 +30,10 @@ const DashboardRoutes = await import('./routes/dashboardRoute.mjs').then(
     module => module.default);
 
 // Route Definitions
-app.use('/member_profiles', MemberRoutes);
-app.use('/register', RegistrationRoutes);
-app.use('/login', LoginRoutes);
-app.use('/dashboard', DashboardRoutes);
+app.use('/api/members', MemberRoutes);
+app.use('/api/register', RegistrationRoutes);
+app.use('/api/login', LoginRoutes);
+app.use('/api/dashboard', DashboardRoutes);
 
 // Set configuration settings - key/value pairs
 app.set('public', './public'); // .static files are located
@@ -60,10 +63,14 @@ app.get('/', async (req, res) => {
     res.status(500).send('Error loading data.');
   }
 });
+// 404 handler for undefined routes
+app.use((req, res) => {
+  res.status(404).json({ message: 'API endpoint not found' });
+});
 
-// app.use('/', SeedRoutes);// Route seed
+// app.use('/api/seed', SeedRoutes);// Route seed
 // //Route to seed all data
-// app.get('/seed/all', async (req, res) => {
+// app.get('/api/seed/all', async (req, res) => {
 //   try {
 //     await Promise.all([
 //       MemberProfiles.deleteMany({}),
