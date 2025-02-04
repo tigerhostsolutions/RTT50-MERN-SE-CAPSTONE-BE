@@ -48,6 +48,35 @@ router.get('/filter/:param', async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+// Retrieve by Gender - query param implementation
+router.get('/filter', async (req, res) => {
+  try {
+    const gender = req.query.gender; // Query parameter for gender (e.g., male or female)
+
+    // Input validation for gender
+    if (!gender || !['male', 'female'].includes(gender.toLowerCase())) {
+      return res.status(400).json({ error: 'Invalid or missing gender filter parameter. Allowed values: male, female' });
+    }
+
+    // Filter by gender
+    const filtered_data = await Member.find({
+      gender: gender.toLowerCase(), // Case-insensitive filtering
+    });
+
+    if (filtered_data.length === 0) {
+      return res.status(404).json({ message: 'No data found matching the gender filter criteria.' });
+    }
+
+    // Render the profile card with filtered data
+    res.render('profileCard', { memberData: filtered_data });
+  } catch (e) {
+    // Logging the error (use winston or console.error)
+    console.error(`Error in retrieving gender-filtered data: ${e.message}`);
+
+    // Return generic error response
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 // Retrieve by id
 router.get('/:id', validate_route_param_id, async (req, res) => {
   try {
