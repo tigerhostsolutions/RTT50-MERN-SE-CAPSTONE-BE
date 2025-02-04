@@ -43,7 +43,7 @@ router.get('/filter', async (req, res) => {
     }
 
     // Render the profile card with filtered data
-    res.render('profileCard', { femaleData: filtered_data, maleData: filtered_data });
+    res.render('profileCard', { memberData: filtered_data });
   } catch (e) {
     // Logging the error (use winston or console.error)
     console.error(`Error in retrieving gender-filtered data: ${e.message}`);

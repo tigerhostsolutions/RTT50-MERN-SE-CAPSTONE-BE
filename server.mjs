@@ -2,8 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import conn from './config/db.mjs';
 import {logger} from './middleware/logger.mjs';
-import MaleProfiles from './models/maleProfiles.mjs';
-import FemaleProfiles from './models/femaleProfiles.mjs';
+import MemberProfiles from './models/memberProfiles.mjs';
 import SeedRoutes from './routes/seed_routes.mjs';
 import cors from 'cors';
 import path from 'path';
@@ -18,9 +17,7 @@ conn();
 app.use(cors({ origin: 'http://localhost:5173', credentials: true, }))
 app.use(express.json());
 
-const MaleProfileRoutes = await import('./routes/maleProfileRoutes.mjs').then(
-    module => module.default);
-const FemaleProfileRoutes = await import('./routes/femaleProfileRoutes.mjs').then(
+const MemberRoutes = await import('./routes/memberRoutes.mjs').then(
     module => module.default);
 const LoginRoutes = await import('./routes/loginRoutes.mjs').then(
     module => module.default);
@@ -30,8 +27,7 @@ const DashboardRoutes = await import('./routes/dashboardRoute.mjs').then(
     module => module.default);
 
 // Route Definitions
-app.use('/male_profiles', MaleProfileRoutes);
-app.use('/female_profiles', FemaleProfileRoutes);
+app.use('/member_profiles', MemberRoutes);
 app.use('/register', RegistrationRoutes);
 app.use('/login', LoginRoutes);
 app.use('/dashboard', DashboardRoutes);
@@ -70,8 +66,7 @@ app.get('/', async (req, res) => {
 // app.get('/seed/all', async (req, res) => {
 //   try {
 //     await Promise.all([
-//       MaleProfiles.deleteMany({}),
-//       FemaleProfiles.deleteMany({}),
+//       MemberProfiles.deleteMany({}),
 //     ]);
 //     logger.warn('Delete on all data attempted at startup!');
 //     console.warn('Delete on all data attempted at startup!');

@@ -3,8 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import data models
-import FemaleProfileModel from '../models/femaleProfiles.mjs';
-import MaleProfileModel from '../models/maleProfiles.mjs';
+import MemberProfileModel from '../models/memberProfiles.mjs';
 
 // Get __dirname equivalent in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -22,37 +21,21 @@ const readJsonFile = async (filePath) => {
   }
 }
 
-const seedFemaleProfiles = async () => {
+const seedMemberProfiles = async () => {
   try {
-    const exists = await FemaleProfileModel.findOne();//Check if data already exists
+    const exists = await MemberProfileModel.findOne();//Check if data already
+    // exists
     if (exists) {
-      console.log('Data for FemaleProfileModel already seeded.');
+      console.log('Data for members already seeded.');
       return;
     }
     //read seed data from file
-    const data = await readJsonFile('../data/femaleData.json');
-    await FemaleProfileModel.insertMany(data);
-    console.log('FemaleProfileModel seeding completed.');
-  }
-  catch (error) {
-    console.error('Error seeding FemaleProfileModel:', error.message);
-  }
-}
-
-const seedMaleProfiles = async () => {
-  try {
-    const exists = await MaleProfileModel.findOne();//Check if data already exists
-    if (exists) {
-      console.log('Data for MaleProfileModel already seeded.');
-      return;
-    }
-    //read seed data from file
-    const data = await readJsonFile('../data/maleData.json');
-    await MaleProfileModel.insertMany(data);
-    console.log('MaleProfileModel seeding completed.');
+    const data = await readJsonFile('../data/memberData.json');
+    await MemberProfileModel.insertMany(data);
+    console.log('Member seeding completed.');
   } catch (error) {
-    console.error('Error seeding MaleProfileModel:', error.message);
+    console.error('Error seeding member profiles:', error.message);
   }
 }
 
-export { seedFemaleProfiles, seedMaleProfiles };
+export { seedMemberProfiles };

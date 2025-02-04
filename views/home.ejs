@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Registrants</title>
     <!-- Ensure `public/styles.css` contains the necessary CSS for styling -->
-    <link rel="stylesheet" href="../public/css/cardStyles.css">
+    <link rel="stylesheet" href="/css/cardStyles.css">
 </head>
 <body>
-<h1 style="text-align: center;">New Registrants</h1>
+<h1 style="text-align: center;">New Members</h1>
 
 <div class="profile-container">
     <% registrants.forEach(registrant => { %>
@@ -18,9 +18,9 @@
                     alt="<%= registrant.name %>'s Profile Picture"
             />
             <h2><%= registrant.name || 'Unknown Name' %></h2>
-            <p><strong>Age:</strong> <%= registrant.age || 'N/A' %></p>
-            <p><strong>Gender:</strong> <%= registrant.gender || 'N/A' %></p>
-            <p><strong>Registered At:</strong> <%= new Date(registrant.createdAt).toLocaleString() || 'N/A' %></p>
+            <p><label>Age:</label> <%= registrant.age || 'N/A' %></p>
+            <p><label>Gender:</label> <%= registrant.gender || 'N/A' %></p>
+            <p><label>Registered At:</label> <%= new Date(registrant.createdAt).toLocaleString() || 'N/A' %></p>
         </div>
     <% }); %>
 </div>
