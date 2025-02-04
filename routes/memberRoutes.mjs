@@ -29,8 +29,8 @@ router.get('/', async (req, res) => {
     if (gender) filters.gender = { $regex: gender, $options: 'i' };
 
     // Perform the filtered search
-    const [maleResults, femaleResults] = await Member.find(filters);
-    res.render('profileCard', {maleData: maleResults, femaleData: femaleResults});
+    const results = await Member.find(filters);
+    res.render('profileCard', {memberData: results});
 
   } catch (e) {
     res.status(500).json({ errors: e.message });
@@ -43,7 +43,7 @@ router.get('/filter/:param', async (req, res) => {
     const filtered_data = await Member.find({
       name: { $regex: new RegExp(filter_key, "i") },
     });
-    res.render('profileCard', {maleData: filtered_data, femaleData: filtered_data});
+    res.render('profileCard', {memberData: filtered_data});
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -52,7 +52,7 @@ router.get('/filter/:param', async (req, res) => {
 router.get('/:id', validate_route_param_id, async (req, res) => {
   try {
     const get_one = await Member.findById(req.params.id);
-    res.render('profileCard', {maleData: [get_one], femaleData: [get_one]});
+    res.render('profileCard', {memberData: [get_one]});
   }
   catch (e) {
     res.status(500).json({error: e.message});
