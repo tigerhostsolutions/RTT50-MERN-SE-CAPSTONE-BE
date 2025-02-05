@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import { config } from 'dotenv';
 import conn from './config/db.mjs';
 import {logger} from './middleware/logger.mjs';
 import MemberProfiles from './models/memberProfiles.mjs';
@@ -9,27 +10,51 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import Registration from './models/registration.mjs';
 
-dotenv.config();
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
+config({ path: envFile });
+
 const app = express();
 const port = process.env.PORT || 5000;
 conn();
 
-const allowedOrigins = [
-    'http://localhost:5173', // Local frontend
-    'https://grasty-mern-capstone-fe.netlify.app' // Deployed frontend
-];
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+                       ? process.env.ALLOWED_ORIGINS.split(',')
+                       : []; // Default to an empty array if not set
+
 app.use(cors({
-  origin: (origin, callback) => {
-    console.log('Request origin:', origin); //debugging
-    if (!origin || allowedOrigins.includes(origin)) { //!origin for debugging
-      callback(null, true);
+  origin: function (origin, callback) {
+    if (!origin || process.env.NODE_ENV === 'production') {
+      callback(null, true); // Allow all origins in production or if origin is not present
+    } else if (allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow listed origins in development
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS')); // Reject other origins
     }
   },
   methods: ['GET,PUT,PATCH,POST,DELETE'],
+  credentials: true, // Allow cookies/auth headers
+}));
 
-  credentials: true,
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || process.env.NODE_ENV === 'production') {
+      // Allow all origins in production or non-origin server requests
+      callback(null, true);
+    } else {
+      // Restrict only in development if needed
+      const allowedOrigins = [
+        'http://localhost:5173',
+        'https://grasty-mern-capstone-fe.netlify.app',
+      ];
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  },
+  methods: ['GET,PUT,PATCH,POST,DELETE'],
+  credentials: true, // Supports cookies/auth headers
 }));
 app.use(express.json());
 
