@@ -29,7 +29,7 @@ router.get('/filter', async (req, res) => {
     const gender = req.query.gender; // Query parameter for gender (e.g., male or female)
 
     // Input validation for gender
-    if (!gender || !['male', 'female'].includes(gender.toLowerCase())) {
+    if (!gender || !['male', 'female', 'other'].includes(gender.toLowerCase())) {
       return res.status(400).json({ error: 'Invalid or missing gender filter parameter. Allowed values: male, female' });
     }
 
