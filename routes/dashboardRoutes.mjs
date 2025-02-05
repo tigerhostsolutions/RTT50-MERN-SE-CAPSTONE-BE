@@ -7,8 +7,8 @@ router.get('/', authMiddleware, (req, res) => {
   // If the token is valid, the middleware attaches `req.registrant` with the
   // decoded payload
   res.status(200).json({
-    message: `Welcome to the Dashboard, ${req.registrant.email}`,
-    registrant: req.registrant,
+    message: `Welcome to the Dashboard, ${req.user.email}`,
+    user: req.user,
     data: {
       profileData: 'Some data for the dashboard...' // Example response
     }
