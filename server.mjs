@@ -11,7 +11,7 @@ import {fileURLToPath} from 'url';
 import Registration from './models/registration.mjs';
 
 const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
-config({ path: envFile });
+config({ path: '.env' });
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -25,26 +25,13 @@ app.use(cors({
   origin: function (origin, callback) {
     if (!origin || process.env.NODE_ENV === 'production') {
       callback(null, true); // Allow all origins in production or if origin is not present
-    } else if (allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow listed origins in development
     } else {
-      callback(new Error('Not allowed by CORS')); // Reject other origins
-    }
-  },
-  methods: ['GET,PUT,PATCH,POST,DELETE'],
-  credentials: true, // Allow cookies/auth headers
-}));
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || process.env.NODE_ENV === 'production') {
-      // Allow all origins in production or non-origin server requests
-      callback(null, true);
-    } else {
-      // Restrict only in development if needed
       const allowedOrigins = [
         'http://localhost:5173',
         'https://grasty-mern-capstone-fe.netlify.app',
+        ...(process.env.ALLOWED_ORIGINS
+            ? process.env.ALLOWED_ORIGINS.split(',')
+            : []),
       ];
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
@@ -53,8 +40,8 @@ app.use(cors({
       }
     }
   },
-  methods: ['GET,PUT,PATCH,POST,DELETE'],
-  credentials: true, // Supports cookies/auth headers
+  methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  credentials: true, // Support for cookies/auth headers
 }));
 app.use(express.json());
 
@@ -64,7 +51,11 @@ const LoginRoutes = await import('./routes/loginRoutes.mjs').then(
     module => module.default);
 const RegistrationRoutes = await import('./routes/registrationRoutes.mjs').then(
     module => module.default);
-const DashboardRoutes = await import('./routes/dashboardRoute.mjs').then(
+const DashboardRoutes = await import('./routes/dashboardRoutes.mjs').then(
+    module => module.default);
+const NoteRoutes = await import('./routes/noteRoutes.mjs').then(
+    module => module.default);
+const AboutMeRoutes = await import('./routes/aboutMeRoutes.mjs').then(
     module => module.default);
 
 // Route Definitions
@@ -72,6 +63,8 @@ app.use('/api/members', MemberRoutes);
 app.use('/api/register', RegistrationRoutes);
 app.use('/api/login', LoginRoutes);
 app.use('/api/dashboard', DashboardRoutes);
+app.use('/api/members/notes', NoteRoutes);
+app.use('/api/members/aboutme', AboutMeRoutes);
 
 // Set configuration settings - key/value pairs
 app.set('public', './public'); // .static files are located
@@ -101,6 +94,7 @@ app.get('/', async (req, res) => {
     res.status(500).send('Error loading data.');
   }
 });
+
 // 404 handler for undefined routes
 app.use((req, res) => {
   res.status(404).json({ message: 'API endpoint not found' });
