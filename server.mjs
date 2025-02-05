@@ -3,8 +3,7 @@ import express from 'express';
 import { config } from 'dotenv';
 import conn from './config/db.mjs';
 import {logger} from './middleware/logger.mjs';
-import MemberProfiles from './models/memberProfiles.mjs';
-import SeedRoutes from './routes/seed_routes.mjs';
+
 import cors from 'cors';
 import path from 'path';
 import {fileURLToPath} from 'url';
@@ -99,21 +98,6 @@ app.get('/', async (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ message: 'API endpoint not found' });
 });
-
-// app.use('/api/seed', SeedRoutes);// Route seed
-// //Route to seed all data
-// app.get('/api/seed/all', async (req, res) => {
-//   try {
-//     await Promise.all([
-//       MemberProfiles.deleteMany({}),
-//     ]);
-//     logger.warn('Delete on all data attempted at startup!');
-//     console.warn('Delete on all data attempted at startup!');
-//   }
-//   catch (e) {
-//     logger.error(`Error deleting data: ${e.message}`);
-//   }
-// });
 
 // Starts the server
 app.listen(port, () => {

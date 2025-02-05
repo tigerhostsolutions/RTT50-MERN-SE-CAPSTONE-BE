@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || "Default Title" %></title>
+</head>
+<body>
+    <!-- Navigation (Shared Across All Pages) -->
+    <nav>
+        <ul>
+            <% routes.forEach(route => { %>
+                <li>
+                    <a href="<%= route.path %>"><%= route.name %></a>
+                </li>
+            <% }); %>
+        </ul>
+    </nav>
+    <hr>
+    <!-- Page-specific content -->
+    <main>
+        <%= content %>
+    </main>
+</body>
+</html>

@@ -10,13 +10,9 @@
 <div class = "profile-container" >
     <% if (memberData || []) { %>
         <% memberData.forEach(profile => { %>
-            <div class = "profile-card" >
-                <img src = "<%= profile.photo; %>" alt = "<%= profile.name; %>" >
-                <h3 ><%= profile.name; %></h3 >
-                <p ><label>Age:</label> <%= profile.age; %></p >
-                <p ><label>Gender:</label> <%= profile.gender; %></p >
-                <p ><label>AboutMe:</label> <%= profile.bio; %></p >
-            </div >
+            <div class="profile-card">
+                <% include("partials/userSummary", { user, expandDetails: false }); %>
+            </div>
         <% }); %>
     <% } %>
 </div >
