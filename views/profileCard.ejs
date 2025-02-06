@@ -3,10 +3,22 @@
 <head >
     <meta charset = "UTF-8" >
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0" >
-    <link rel = "stylesheet" type="text/css" href = "/css/cardStyles.css" >
+    <link rel = "stylesheet" type="text/css" href = "../public/css/cardStyles.css" >
     <title >Profile Cards</title >
 </head >
 <body >
+
+<header>
+    <h1>Social Match Makers</h1>
+    <nav>
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+
+<!-- Welcome Message -->
+<h2>Welcome, <%= user.name %>!</h2>
+
 <div class = "profile-container" >
     <% if (memberData || []) { %>
         <% memberData.forEach(profile => { %>
@@ -20,5 +32,11 @@
         <% }); %>
     <% } %>
 </div >
+
+
+
+
+
+
 </body >
 </html >
