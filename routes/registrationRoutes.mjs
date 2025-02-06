@@ -4,27 +4,7 @@ import bcrypt from 'bcrypt';
 import upload from '../config/multer.mjs';
 
 const router = express.Router();
-// Retrieve All or Filter by Query Parameters
-// router.get('/', async (req, res) => {
-//   try {
-//     const { name, age, gender } = req.query;
-//     const filters = {};
-//
-//     // Apply filters dynamically based on provided query parameters
-//     if (name) filters.name = { $regex: name, $options: 'i' };
-//     if (age) filters.age = { $regex: age, $options: 'i' };
-//     if (gender) filters.gender = { $regex: gender, $options: 'i' };
-//
-//     // Perform the filtered search
-//     const results = await Registration.find(filters);
-//     res.render('profileCard', {maleData: maleResults, femaleData: []});
-//
-//   } catch (e) {
-//     res.status(500).json({ errors: e.message });
-//   }
-// });
-// Retrieve by Gender - query param implementation
-// Retrieve by Gender - query param implementation
+
 router.get('/filter', async (req, res) => {
   try {
     const gender = req.query.gender;
@@ -48,6 +28,16 @@ router.get('/filter', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const user = await Registration.findById(req.params.id); // Find user by ID
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user); // Return user as JSON
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 //Add new
 router.post('/', upload.single('photo'), async (req, res) => {
   try {
@@ -64,6 +54,24 @@ router.post('/', upload.single('photo'), async (req, res) => {
   }
   catch (e) {
     res.status(500).json({error: e.message});
+  }
+});
+
+// Edit User Info
+router.put('/:id', upload.single('photo'), async (req, res) => {
+  try {
+    const updates = { ...req.body };
+
+    // If a new file is uploaded, include the `profileImage` in updates
+    if (req.file) {
+      updates.profileImage = `/uploads/${req.file.filename}`;
+    }
+
+    const updatedUser = await Registration.findByIdAndUpdate(req.params.id, updates, { new: true });
+    if (!updatedUser) return res.status(404).json({ error: 'User not found' });
+    res.json(updatedUser);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 

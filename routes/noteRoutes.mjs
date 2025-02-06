@@ -1,5 +1,5 @@
 import express from 'express';
-import Note from '../models/note.js';
+import Note from '../models/note.mjs';
 import authenticate from '../middleware/authentication.mjs'; // Import the
 // authentication middleware
 
