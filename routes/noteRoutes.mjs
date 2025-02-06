@@ -1,51 +1,60 @@
 import express from 'express';
-import Note from '../models/note.mjs';
+import Note from '../models/note.js';
+import authenticate from '../middleware/authentication.mjs'; // Import the
+// authentication middleware
 
 const router = express.Router();
 
-// CREATE a Note
-router.post('/notes', async (req, res) => {
+// Create a Note
+router.post('/', authenticate, async (req, res) => {
   try {
-    const { content, userId } = req.body;
-    const note = new Note({ content, userId });
-    await note.save();
-    res.status(201).json(note);
-  } catch (err) {
-    res.status(500).json({ error: 'Error creating the note.', details: err.message });
+    const note = await Note.create({
+      user: req.user.id,
+      content: req.body.content,
+    });
+    res.status(201).json(note); // Return newly created note
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create note' });
   }
 });
 
-// READ Notes for a specific user
-router.get('/notes/:userId', async (req, res) => {
+// Read All Notes for a User
+router.get('/', authenticate, async (req, res) => {
   try {
-    const { userId } = req.params;
-    const notes = await Note.find({ userId });
+    const notes = await Note.find({ user: req.user.id });
     res.status(200).json(notes);
-  } catch (err) {
-    res.status(500).json({ error: 'Error fetching notes.', details: err.message });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch notes' });
   }
 });
 
-// UPDATE a Note
-router.put('/notes/:id', async (req, res) => {
+// Update a Note
+router.put('/:id', authenticate, async (req, res) => {
   try {
-    const { id } = req.params;
-    const { content } = req.body;
-    const note = await Note.findByIdAndUpdate(id, { content }, { new: true });
-    res.status(200).json(note);
-  } catch (err) {
-    res.status(500).json({ error: 'Error updating the note.', details: err.message });
+    const updatedNote = await Note.findOneAndUpdate(
+        { _id: req.params.id, user: req.user.id },
+        { content: req.body.content },
+        { new: true } // Return the updated document
+    );
+
+    if (!updatedNote) return res.status(404).json({ error: 'Note not found' });
+
+    res.status(200).json(updatedNote);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update note' });
   }
 });
 
-// DELETE a Note
-router.delete('/notes/:id', async (req, res) => {
+// Delete a Note
+router.delete('/:id', authenticate, async (req, res) => {
   try {
-    const { id } = req.params;
-    await Note.findByIdAndDelete(id);
-    res.status(200).json({ message: 'Note deleted successfully.' });
-  } catch (err) {
-    res.status(500).json({ error: 'Error deleting the note.', details: err.message });
+    const deletedNote = await Note.findOneAndDelete({ _id: req.params.id, user: req.user.id });
+
+    if (!deletedNote) return res.status(404).json({ error: 'Note not found' });
+
+    res.status(200).json({ message: 'Note deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete note' });
   }
 });
 
