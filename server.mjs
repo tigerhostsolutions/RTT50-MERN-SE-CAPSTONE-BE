@@ -58,6 +58,8 @@ const AboutMeRoutes = await import('./routes/aboutMeRoutes.mjs').then(
     module => module.default);
 const ProfileImageRoutes = await import('./routes/profileImageRoutes.mjs').then(
     module => module.default);
+const ProfileCardRoutes = await import('./routes/profileCardRoutes.mjs').then(
+    module => module.default);
 
 // Route Definitions
 app.use('/api/members', MemberRoutes);
@@ -67,6 +69,7 @@ app.use('/api/dashboard', DashboardRoutes);
 app.use('/api/members/notes', NoteRoutes);
 app.use('/api/members/aboutme', AboutMeRoutes);
 app.use('/api/members/profile-image', ProfileImageRoutes);
+app.use('/api/members/', ProfileCardRoutes);
 
 // Set configuration settings - key/value pairs
 app.set('public', './public'); // .static files are located

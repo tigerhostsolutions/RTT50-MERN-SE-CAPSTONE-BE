@@ -23,15 +23,12 @@ router.get('/', async (req, res) => {
     const { name, age, gender } = req.query;
     const filters = {};
 
-    // Apply filters dynamically based on provided query parameters
     if (name) filters.name = { $regex: name, $options: 'i' };
     if (age) filters.age = { $regex: age, $options: 'i' };
     if (gender) filters.gender = { $regex: gender, $options: 'i' };
 
-    // Perform the filtered search
     const results = await Member.find(filters);
-    res.render('profileCard', {memberData: results});
-
+    res.status(200).json(results); // Return JSON response
   } catch (e) {
     res.status(500).json({ errors: e.message });
   }
@@ -43,7 +40,7 @@ router.get('/filter/:param', async (req, res) => {
     const filtered_data = await Member.find({
       name: { $regex: new RegExp(filter_key, "i") },
     });
-    res.render('profileCard', {memberData: filtered_data});
+    res.status(200).json(filtered_data); // Return JSON response
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -51,29 +48,23 @@ router.get('/filter/:param', async (req, res) => {
 // Retrieve by Gender - query param implementation
 router.get('/filter', async (req, res) => {
   try {
-    const gender = req.query.gender; // Query parameter for gender (e.g., male or female)
+    const gender = req.query.gender;
 
-    // Input validation for gender
     if (!gender || !['male', 'female'].includes(gender.toLowerCase())) {
       return res.status(400).json({ error: 'Invalid or missing gender filter parameter. Allowed values: male, female' });
     }
 
-    // Filter by gender
     const filtered_data = await Member.find({
-      gender: gender.toLowerCase(), // Case-insensitive filtering
+      gender: gender.toLowerCase(),
     });
 
     if (filtered_data.length === 0) {
       return res.status(404).json({ message: 'No data found matching the gender filter criteria.' });
     }
 
-    // Render the profile card with filtered data
-    res.render('profileCard', { memberData: filtered_data });
+    res.status(200).json(filtered_data); // Return JSON response
   } catch (e) {
-    // Logging the error (use winston or console.error)
     console.error(`Error in retrieving gender-filtered data: ${e.message}`);
-
-    // Return generic error response
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -81,10 +72,13 @@ router.get('/filter', async (req, res) => {
 router.get('/:id', validate_route_param_id, async (req, res) => {
   try {
     const get_one = await Member.findById(req.params.id);
-    res.render('profileCard', {memberData: [get_one]});
+    if (!get_one) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json(get_one);
   }
   catch (e) {
-    res.status(500).json({error: e.message});
+    res.status(500).json({ error: e.message });
   }
 });
 //Add new
