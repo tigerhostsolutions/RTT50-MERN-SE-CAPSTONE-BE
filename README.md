@@ -1,4 +1,4 @@
-# Frontend Project - Social Match Makers
+# Backend Project - Social Match Makers
 https://rtt50-mern-se-capstone-be.onrender.com/
 
 ## Table of Contents
