@@ -2,7 +2,7 @@ import express from 'express';
 import authenticate from '../middleware/authentication.mjs'; // Import the
 // authentication middleware
 
-import Note from '../models/note.mjs'; // Example Mongoose model
+import Note from 'models/note.mjs'; // Example Mongoose model
 
 const router = express.Router();
 
