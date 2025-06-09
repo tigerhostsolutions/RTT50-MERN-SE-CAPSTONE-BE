@@ -1,5 +1,5 @@
 # Backend Project - Social Match Makers
-https://rtt50-mern-se-capstone-be.onrender.com/
+https://socialmatch.onrender.com/
 
 ## Table of Contents
 - [Overview](#overview)
